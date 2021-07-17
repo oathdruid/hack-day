@@ -6,14 +6,14 @@ LDFLAGS += -pthread
 
 SRCS = $(wildcard src/*.cpp)
 
-all: recommander
+all: recommender
 
 -include $(SRCS:%.cpp=%.d)
 
-recommander: $(SRCS:%.cpp=%.o)
+recommender: $(SRCS:%.cpp=%.o)
 	$(CXX) $(LDFLAGS) -o $@ $^
 
 clean:
 	rm -rf src/*.d
 	rm -rf src/*.o
-	rm -rf recommander
+	rm -rf recommender
