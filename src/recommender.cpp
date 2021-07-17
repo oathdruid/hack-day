@@ -157,7 +157,7 @@ int Recommender::recommend(const ::std::string& user_id, ::std::string& item_ids
         << ", " << build_context_timer.elaspe_us()
         << ", " << generate_list_timer.elaspe_us()
         << ", " << append_history_timer.elaspe_us()
-        << ") history(" << dedup_context.history_items_num
+        << ") history (" << dedup_context.history_items_num
         << ", " << dedup_context.dedup_items_num
         << ") funnel ("
         << top_items.size()

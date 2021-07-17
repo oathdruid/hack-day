@@ -71,7 +71,7 @@ int Index::add_item(::std::string_view line) {
         return -1;
     }
     {
-        ::std::lock_guard<::std::mutex> lock(_mutex);
+        ::std::unique_lock lock(_mutex);
         _items.emplace(item->id, ::std::move(item));
     }
     return 0;
@@ -107,7 +107,7 @@ int Index::query(const ::std::string& user_id, ::std::string_view showed_items_l
         // 遍历打分
         ::std::vector<::std::pair<float, Item*>> result;
         result.reserve(_items.size());
-        ::std::lock_guard<::std::mutex> lock(_mutex);
+        ::std::shared_lock lock(_mutex);
         for (auto& pair : _items) {
             auto& item = pair.second;
             if (0 != showed_item_ids.count(item->id)) {

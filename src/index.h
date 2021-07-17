@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 #include <memory>
-#include <mutex>
+#include <shared_mutex>
 
 #include "item.h"
 
@@ -21,7 +21,7 @@ public:
             size_t topk, ::std::vector<::std::string>& top_item_lines);
 
 private:
-    ::std::mutex _mutex;
+    ::std::shared_mutex _mutex;
     ::std::unordered_map<::std::string, ::std::vector<float>> _user_embeddings;
     ::std::unordered_map<uint64_t, ::std::unique_ptr<Item>> _items;
 };

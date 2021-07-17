@@ -8,7 +8,7 @@ void History::set_capacity(size_t bytes) {
 }
 
 int History::read(const ::std::string& user_id, ::std::string& showed_items_line) {
-    ::std::lock_guard<::std::mutex> lock(_mutex);
+    ::std::shared_lock lock(_mutex);
     showed_items_line = _showed_items_per_user[user_id];
     return 0;
 }
@@ -18,7 +18,7 @@ int History::append(const ::std::string& user_id, ::std::string_view new_showed_
         return 0;
     }
 
-    ::std::lock_guard<::std::mutex> lock(_mutex);
+    ::std::unique_lock lock(_mutex);
     auto& base_showed_items_line = _showed_items_per_user[user_id];
 
     // 如果超长则先尝试截断

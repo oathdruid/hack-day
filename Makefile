@@ -1,4 +1,4 @@
-CXX = /opt/compiler/gcc-10/bin/g++
+CXX = g++
 
 CPPFLAGS += -MMD -MP
 CXXFLAGS += -g -Wall -Werror -O3 -std=c++17 -pthread
